@@ -8,12 +8,14 @@
     tools:context=".Sign_in">
 
 
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sing in"
+        android:text="Sign In"
         android:textAlignment="center"
+        android:textCoslor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,49 +28,53 @@
     <EditText
         android:id="@+id/number"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/input_box_bk"
+        android:layout_height="wrap_content"
         android:drawableStart="@drawable/ic_baseline_perm_identity_24"
         android:hint="Enter your Number"
         android:inputType="number"
-        android:textSize="15dp"
+        android:maxLength="10"
+        android:textColor="#fff"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.47"
-        android:maxEms="10"
-        />
+        android:textColorHint="#DFE0E4"
+        app:layout_constraintVertical_bias="0.37" />
 
     <EditText
+
         android:id="@+id/password_signin"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_baseline_lock_24"
         android:hint="Enter your password"
         android:inputType="textPassword"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:textColorHint="#DFE0E4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.554"
-        android:drawableStart="@drawable/ic_baseline_lock_24"
-        android:background="@drawable/input_box_bk"
-        android:minEms="8"
+        app:layout_constraintVertical_bias="0.48"
+
         />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/sing_in"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
         android:text="Sign In"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.72" />
+        app:layout_constraintVertical_bias="0.60" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -79,7 +85,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.618">
+        app:layout_constraintVertical_bias="0.64">
 
 
         <TextView
@@ -88,29 +94,40 @@
             android:layout_weight="1"
             android:gravity="right"
             android:text="Not Register? "
-            android:textSize="10sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/go_to_sign_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:text=" Register"
-            android:textColor="#304FFE"
-            android:textSize="15sp" />
+            android:textColor="#2962FF"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:background="@drawable/circular_bk"
         android:src="@drawable/ic_baseline_person_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.205"
-        android:background="@drawable/circular_bk"
-        />
+        app:layout_constraintVertical_bias="0.105" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sing_in"
+        app:layout_constraintVertical_bias="0.453" />
 </androidx.constraintlayout.widget.ConstraintLayout>

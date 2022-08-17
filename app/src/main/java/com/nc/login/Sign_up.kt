@@ -7,12 +7,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
@@ -28,9 +27,12 @@ class Sign_up : Fragment(R.layout.fragment_sing_up) {
     lateinit var number_box: EditText
     lateinit var otp_edit: EditText
     lateinit var sing_up_button: Button
-    lateinit var getotp: Button
+    lateinit var getotp: TextView
     lateinit var otp_code: String
     var varification_flag: Int = 0
+
+    lateinit var progressBar: ProgressBar
+    lateinit var sign_in:TextView
 
     lateinit var name: String
     lateinit var password: String
@@ -58,10 +60,12 @@ class Sign_up : Fragment(R.layout.fragment_sing_up) {
         getotp = view.findViewById(R.id.getOtp);
         otp_edit = view.findViewById(R.id.otp);
         auth = FirebaseAuth.getInstance()
+        progressBar=view.findViewById(R.id.progress_bar)
         //  initialize_Variable()
+        sign_in=view.findViewById(R.id.create);
         sing_up_button.visibility = View.INVISIBLE;
         sing_up_button.setOnClickListener {
-
+            progressBar.visibility=View.VISIBLE
             initialize_Variable()
             var code: String = otp_edit.text.toString().trim()
             if (varification_flag == 1) {
@@ -77,7 +81,7 @@ class Sign_up : Fragment(R.layout.fragment_sing_up) {
                 addData()
         }
         getotp.setOnClickListener {
-
+            progressBar.visibility=View.VISIBLE
             number = "+91${number_box.text.toString().trim()}"
             if (number.isEmpty())
                 Toast.makeText(requireContext(), "Mobile number can't be empty", Toast.LENGTH_SHORT)
@@ -96,6 +100,13 @@ class Sign_up : Fragment(R.layout.fragment_sing_up) {
                 PhoneAuthProvider.verifyPhoneNumber(options)
             }
         }
+       sign_in.setOnClickListener {
+           var signInFragment=Sign_in()
+           var manager=fragmentManager
+           var transaction= manager?.beginTransaction()
+           transaction?.replace(R.id.fragmentContainerView,signInFragment)
+           transaction?.commit()
+       }
 
         return view;
         //  return super.onCreateView(inflater, container, savedInstanceState)
@@ -189,6 +200,7 @@ class Sign_up : Fragment(R.layout.fragment_sing_up) {
                     println("Sign in completed")
                     varification_flag = 1
                     otp_edit.focusable=View.NOT_FOCUSABLE
+                    progressBar.visibility=View.INVISIBLE
                     alertDialog("Authentication Completed")
 //                    Toast.makeText(requireContext(), "verificatin Completed", Toast.LENGTH_SHORT).show()
                     Log.d(TAG, "signInWithCredential:success====================")
@@ -225,6 +237,7 @@ class Sign_up : Fragment(R.layout.fragment_sing_up) {
 
     fun goto_DeskBoard()
     {
+        progressBar.visibility=View.INVISIBLE
         var intent =Intent(context,Desk::class.java)
         startActivity(intent)
     }
